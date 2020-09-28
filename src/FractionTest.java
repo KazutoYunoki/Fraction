@@ -78,6 +78,25 @@ public class FractionTest {
 		Fraction f = new Fraction(1, 2);
 		assertThat("1/2", is(f.toString()));
 	}
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testConvertFloat()
+	{
+		Fraction f1 = new Fraction(1, 3);
+		double floatPoint = f1.convertFloat();
+		assertThat(floatPoint, is(0.3333333333333333));
+	}
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testConvertInt() {
+		Fraction f1 = new Fraction(4, 2);
+		int num = f1.convertInt();
+		assertThat(num, is(2));
+		
+		Fraction f2 = new Fraction(1, 3);
+		int num1 = f2.convertInt();
+		assertThat(num1, is(0));
+	}
 
 
 }

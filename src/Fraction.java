@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  * 分数を扱うクラス
  * @author kazut
@@ -8,6 +10,10 @@ public class Fraction {
 	private int mol;
 	/**　分母*/
 	private int den;
+	/**
+	 * コンストラクタ
+	 * @param num　整数
+	 */
 	public Fraction(int num) {
 		this(num, 1);
 	}
@@ -192,6 +198,37 @@ public class Fraction {
 		return f;
 	}
 	/**
+	 * 分数を浮動小数点に変換
+	 * @return
+	 */
+	public double convertFloat()
+	{
+		double f = (double)this.getMol() / this.getDen();
+		return f;
+	}
+	/**
+	 * 整数に変換、できなければ例外
+	 * @return　整数
+	 */
+	public int convertInt()
+	{
+		try {
+			//　分子を分母で割り切れる場合整数に変換
+			if(this.getMol() % this.getDen() == 0)
+			{
+				int num = this.getMol() / this.getDen();
+				return num;
+			}
+			else
+			{
+				throw new IOException();
+			}
+		}catch(IOException e) {
+			System.out.println("整数に変換できません。");
+			return 0;
+		}
+	}
+	/**
 	 * 2つの整数から最大公約数を求める関数
 	 * @param a　整数
 	 * @param b　整数
@@ -228,6 +265,7 @@ public class Fraction {
 	{
 		return den;
 	}
+
 	@Override
 	public String toString() {
 		return String.valueOf(this.mol) + '/' + String.valueOf(this.den);
