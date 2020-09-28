@@ -5,7 +5,7 @@ import java.io.IOException;
  * @author kazut
  *
  */
-public class Fraction {
+public class Fraction implements Comparable<Fraction>{
 	/**　分子*/
 	private int mol;
 	/**　分母*/
@@ -207,7 +207,7 @@ public class Fraction {
 		return f;
 	}
 	/**
-	 * 整数に変換、できなければ例外
+	 * 整数に変換、できなければ例外処理
 	 * @return　整数
 	 */
 	public int convertInt()
@@ -221,6 +221,7 @@ public class Fraction {
 			}
 			else
 			{
+				//　整数に変換できない場合は例外を投げる
 				throw new IOException();
 			}
 		}catch(IOException e) {
@@ -269,6 +270,56 @@ public class Fraction {
 	@Override
 	public String toString() {
 		return String.valueOf(this.mol) + '/' + String.valueOf(this.den);
+	}
+	/**
+	 * hashCode()のオーバーライド
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+
+		//　約分してからハッシュ値を計算(同じ値の分数を同じハッシュ値にするため）
+		Fraction f = this.reduction();
+		result = prime * result + f.getDen();
+		result = prime * result + f.getMol();
+		return result;
+	}
+	/**
+	 * equalsメソッドのオーバーライド
+	 */
+	@Override
+	public boolean equals(Object o) {
+		//　オブジェクトが同じ参照ならばtrue
+		if(o == this) {
+			return true;
+		}
+		//　オブジェクトの型がFractionでなければfalse
+		if(!(o instanceof Fraction))
+		{
+			return false;
+		}
+		//　比較対象の分数を約分
+		Fraction f = (Fraction) o;
+		f = f.reduction();
+
+		//　比較する分数の約分
+		Fraction f2 = this.reduction();
+
+		//　分子同士、分母同士の比較結果を返す
+		return (f.getMol() == f2.getMol()) && (f.getDen() == f2.getDen());
+	}
+	/**
+	 * compareToメソッドのオーバーライド
+	 */
+	@Override
+	public int compareTo(Fraction f) {
+		//　分母を合わせて分子による比較
+		int mol1 = this.getMol() * f.getDen();
+
+		int mol2 = f.mol * this.getDen();
+
+ 		return mol1 - mol2;
 	}
 
 

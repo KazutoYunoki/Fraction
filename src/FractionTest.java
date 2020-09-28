@@ -10,7 +10,7 @@ public class FractionTest {
 	@Test
 	public void testAdd() {
 		Fraction f = new Fraction(1, 2);
-		Fraction f2 = new Fraction(1, 3);
+		Fraction f2 = new Fraction(-1, 3);
 		int num = 2;
 
 		Fraction r = f.add(f2);
@@ -92,10 +92,20 @@ public class FractionTest {
 		Fraction f1 = new Fraction(4, 2);
 		int num = f1.convertInt();
 		assertThat(num, is(2));
-		
+
 		Fraction f2 = new Fraction(1, 3);
 		int num1 = f2.convertInt();
 		assertThat(num1, is(0));
+	}
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testEquals()
+	{
+		Fraction f1 = new Fraction(1, 2);
+		Fraction f2 = new Fraction(2, 4);
+
+		assertThat(f1.equals(f1), is(true));
+		assertThat(f1.equals(f2), is(true));
 	}
 
 
