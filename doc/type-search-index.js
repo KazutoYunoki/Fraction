@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"Fraction","h":"","u":""},{"l":"FractionTest","h":"","u":""},{"l":"すべてのクラス","h":"","u":"allclasses-index.html"}]

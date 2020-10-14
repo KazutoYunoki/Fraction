@@ -5,7 +5,11 @@ import org.junit.Test;
 
 public class FractionTest {
 
+	@Test(expected = ArithmeticException.class)
+	public void testConstract() {
+		Fraction f = new Fraction(1, 0);
 
+	}
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testAdd() {
@@ -14,7 +18,7 @@ public class FractionTest {
 		int num = 2;
 
 		Fraction r = f.add(f2);
-		assertThat("5/6", is(r.toString()));
+		assertThat("1/6", is(r.toString()));
 
 		Fraction r1 = f.add(num);
 		assertThat("5/2", is(r1.toString()));
@@ -50,17 +54,19 @@ public class FractionTest {
 		assertThat("1/1", is(r1.toString()));
 	}
 	@SuppressWarnings("deprecation")
-	@Test
-	public void testDiv() {
+	@Test(expected = ArithmeticException.class)
+	public void testDiv(){
 		Fraction f = new Fraction(1, 2);
 		Fraction f2 = new Fraction(1, 3);
-		int num = 2;
 
 		Fraction r = f.div(f2);
 		assertThat("3/2", is(r.toString()));
 
-		Fraction r1 = f.div(num);
+		Fraction r1 = f.div(2);
 		assertThat("1/4", is(r1.toString()));
+
+		Fraction r2 = f.div(0);
+
 
 	}
 	@SuppressWarnings("deprecation")
@@ -87,15 +93,15 @@ public class FractionTest {
 		assertThat(floatPoint, is(0.3333333333333333));
 	}
 	@SuppressWarnings("deprecation")
-	@Test
+	@Test(expected = ArithmeticException.class)
 	public void testConvertInt() {
+
 		Fraction f1 = new Fraction(4, 2);
 		int num = f1.convertInt();
 		assertThat(num, is(2));
 
 		Fraction f2 = new Fraction(1, 3);
-		int num1 = f2.convertInt();
-		assertThat(num1, is(0));
+		int re = f2.convertInt();
 	}
 	@SuppressWarnings("deprecation")
 	@Test

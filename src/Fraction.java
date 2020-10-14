@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 /**
  * 分数を扱うクラス
  * @author kazut
@@ -18,12 +16,17 @@ public class Fraction implements Comparable<Fraction>{
 		this(num, 1);
 	}
 	/**
-	 * コンストラクタ
+	 * コンストラクタ（分母に0が設定された場合例外投げる）
 	 * @param mol 分子
 	 * @param den　分母
 	 */
 	public Fraction(int mol, int den)
 	{
+		//　もし分母にゼロがある場合(例外を投げる）
+		if(den == 0)
+		{
+			throw new ArithmeticException();
+		}
 		//　分母に負数がある場合分子に負数を持っていく
 		if(den < 0)
 		{
@@ -104,7 +107,7 @@ public class Fraction implements Comparable<Fraction>{
 	{
 		//　受け取った整数（int)をFraction型へ
 		Fraction f = new Fraction(num);
-		//　分数同士の足し算を実施
+		//　分数同士の引き算を実施
 		Fraction re = this.sub(f);
 
 		return re;
@@ -161,8 +164,13 @@ public class Fraction implements Comparable<Fraction>{
 	 * @param num　割る数
 	 * @return　剰余結果
 	 */
-	public Fraction div(int num)
+	public Fraction div(int num) throws ArithmeticException
 	{
+		//　0で割る場合は例外処理
+		if(num == 0)
+		{
+			throw new ArithmeticException();
+		}
 		//　整数の逆数を作成
 		Fraction f = new Fraction(1, num);
 
@@ -210,23 +218,19 @@ public class Fraction implements Comparable<Fraction>{
 	 * 整数に変換、できなければ例外処理
 	 * @return　整数
 	 */
-	public int convertInt()
+	public int convertInt() throws ArithmeticException
 	{
-		try {
-			//　分子を分母で割り切れる場合整数に変換
-			if(this.getMol() % this.getDen() == 0)
-			{
-				int num = this.getMol() / this.getDen();
-				return num;
-			}
-			else
-			{
-				//　整数に変換できない場合は例外を投げる
-				throw new IOException();
-			}
-		}catch(IOException e) {
-			System.out.println("整数に変換できません。");
-			return 0;
+
+		//　分子を分母で割り切れる場合整数に変換
+		if(this.getMol() % this.getDen() == 0)
+		{
+			int num = this.getMol() / this.getDen();
+			return num;
+		}
+		else
+		{
+			//　整数に変換できない場合は例外を投げる
+			throw new ArithmeticException();
 		}
 	}
 	/**
