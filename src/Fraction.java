@@ -273,7 +273,16 @@ public class Fraction implements Comparable<Fraction>{
 
 	@Override
 	public String toString() {
-		return String.valueOf(this.mol) + '/' + String.valueOf(this.den);
+
+		//　整数でない場合
+		if(this.den != 1)
+		{
+			return String.valueOf(this.mol) + '/' + String.valueOf(this.den);
+		}
+		else
+		{
+			return String.valueOf(this.mol);
+		}
 	}
 	/**
 	 * hashCode()のオーバーライド

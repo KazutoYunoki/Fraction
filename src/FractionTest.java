@@ -51,7 +51,7 @@ public class FractionTest {
 		assertThat("1/6", is(r.toString()));
 
 		Fraction r1 = f.multi(num);
-		assertThat("1/1", is(r1.toString()));
+		assertThat("1", is(r1.toString()));
 	}
 	@SuppressWarnings("deprecation")
 	@Test(expected = ArithmeticException.class)
@@ -82,7 +82,13 @@ public class FractionTest {
 	public void testToString()
 	{
 		Fraction f = new Fraction(1, 2);
+		Fraction f1 = new Fraction(2, 4);
+		Fraction f2 = new Fraction(3);
+		
 		assertThat("1/2", is(f.toString()));
+		assertThat("2/4", is(f1.toString()));
+		assertThat("3", is(f2.toString()));
+		
 	}
 	@SuppressWarnings("deprecation")
 	@Test
