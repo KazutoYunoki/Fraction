@@ -1,3 +1,4 @@
+package model;
 /**
  * 分数の雛形を表す抽象クラス
  * @author kazut

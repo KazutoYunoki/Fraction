@@ -1,3 +1,5 @@
+package model;
+
 /**
  * 分数を扱うクラス
  * @author kazut
@@ -64,7 +66,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param num　整数
 	 * @return　加算結果
 	 */
-	@Override
 	public Fraction2 add(int num) {
 		//　受け取った整数（int)をFraction型へ
 		Fraction2 f = new Fraction2(num);
@@ -79,7 +80,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param f　引数
 	 * @return　減算結果
 	 */
-	@Override
 	public Fraction2 sub(Fraction2 f) {
 		//　引数を-1倍にして加算
 		Fraction2 min = f.multi(-1);
@@ -94,7 +94,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param num
 	 * @return　計算結果
 	 */
-	@Override
 	public Fraction2 sub(int num) {
 		//　受け取った整数（int)をFraction型へ
 		Fraction2 f = new Fraction2(num);
@@ -109,7 +108,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param f かける数
 	 * @return　乗算結果
 	 */
-	@Override
 	public Fraction2 multi(Fraction2 f) {
 		//　分子と分母を掛け算する
 		int mol = this.getMol() * f.getMol();
@@ -125,7 +123,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param num 整数
 	 * @return　乗算結果
 	 */
-	@Override
 	public Fraction2 multi(int num) {
 		//　整数を分数に変換
 		Fraction2 f = new Fraction2(num);
@@ -141,7 +138,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param f　割る数
 	 * @return　剰余結果
 	 */
-	@Override
 	public Fraction2 div(Fraction2 f) {
 		//　逆数の分数を作成
 		Fraction2 inv = new Fraction2(f.getDen(), f.getMol());
@@ -158,7 +154,6 @@ public class Fraction2 implements Comparable<Fraction2> {
 	 * @param num　割る数
 	 * @return　剰余結果
 	 */
-	@Override
 	public Fraction2 div(int num) throws ArithmeticException {
 		//　0で割る場合は例外処理
 		if (num == 0) {
