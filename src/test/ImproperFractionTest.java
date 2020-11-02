@@ -1,94 +1,169 @@
 package test;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
+import model.Fraction;
+import model.ImproperFraction;
+
 public class ImproperFractionTest {
+
+	@Test(expected = ArithmeticException.class)
+	public void testConstract() {
+		new ImproperFraction(1, 0);
+	}
 
 	@Test
 	public void testHashCode() {
-		fail("まだ実装されていません");
+
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddFraction() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction f2 = new ImproperFraction(-1, 3);
+
+		Fraction r = f.add(f2);
+
+		assertThat("1/6", is(r.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddInt() {
-		fail("まだ実装されていません");
+		int num = 2;
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction r1 = f.add(num);
+		assertThat("5/2", is(r1.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testSubFraction() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction f2 = new ImproperFraction(1, 3);
+
+		Fraction r = f.sub(f2);
+		assertThat("1/6", is(r.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testSubInt() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		int num = 2;
+
+		Fraction r1 = f.sub(num);
+		assertThat("-3/2", is(r1.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testMultiFraction() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction f2 = new ImproperFraction(1, 3);
+
+		Fraction r = f.multi(f2);
+		assertThat("1/6", is(r.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testMultiInt() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		int num = 2;
+
+		Fraction r = f.multi(num);
+		assertThat("1", is(r.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testDivFraction() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction f2 = new ImproperFraction(1, 3);
+
+		Fraction r = f.div(f2);
+		assertThat("3/2", is(r.toString()));
+
 	}
 
-	@Test
+	@SuppressWarnings("deprecation")
+	@Test(expected = ArithmeticException.class)
 	public void testDivInt() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction r1 = f.div(2);
+		assertThat("1/4", is(r1.toString()));
+
+		f.div(0);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testReduce() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(3, 6);
+		Fraction r = f.reduce();
+		assertThat("1/2", is(r.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testConvertFloat() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 3);
+		double floatPoint = f.convertFloat();
+		assertThat(floatPoint, is(0.3333333333333333));
 	}
 
-	@Test
+	@SuppressWarnings("deprecation")
+	@Test(expected = ArithmeticException.class)
 	public void testConvertInt() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(4, 2);
+		int num = f.convertInt();
+		assertThat(num, is(2));
+
+		Fraction f1 = new ImproperFraction(1, 3);
+		f1.convertInt();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testToString() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(2, 3);
+		assertThat("2/3", is(f.toString()));
+		Fraction f1 = new ImproperFraction(3, 1);
+		assertThat("3", is(f1.toString()));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testEqualsObject() {
-		fail("まだ実装されていません");
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction f1 = new ImproperFraction(2, 4);
+		Fraction f2 = new ImproperFraction(1, 3);
+		assertThat(f.equals(f), is(true));
+		assertThat(f.equals(f1), is(true));
+		assertThat(f.equals(f2), is(false));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCompareTo() {
-		fail("まだ実装されていません");
-	}
+		Fraction f = new ImproperFraction(1, 2);
+		Fraction f1 = new ImproperFraction(1, 3);
 
-	@Test
-	public void testImproperFractionInt() {
-		fail("まだ実装されていません");
-	}
+		SortedSet<Fraction> s = new TreeSet<Fraction>();
+		s.add(f);
+		s.add(f1);
 
-	@Test
-	public void testImproperFractionIntInt() {
-		fail("まだ実装されていません");
+		assertThat("1/3", is(s.first().toString()));
+		assertThat("1/2", is(s.last().toString()));
+
 	}
 
 }

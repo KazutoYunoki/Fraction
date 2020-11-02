@@ -1,4 +1,5 @@
 package model;
+
 /**
  * 分数の雛形を表す抽象クラス
  * @author kazut
@@ -70,74 +71,74 @@ public abstract class Fraction implements Comparable<Fraction> {
 	 * @param f 加数
 	 * @return 加算結果
 	 */
-	protected abstract Fraction add(Fraction f);
+	public abstract Fraction add(Fraction f);
 
 	/**
 	 * 分数と整数同士の足し算
 	 * @param num 整数
 	 * @return　加算結果
 	 */
-	protected abstract Fraction add(int num);
+	public abstract Fraction add(int num);
 
 	/**
 	 * 分数同士の引き算
 	 * @param f　引数
 	 * @return　減算結果
 	 */
-	protected abstract Fraction sub(Fraction f);
+	public abstract Fraction sub(Fraction f);
 
 	/**
 	 * 分数と整数の引き算
 	 * @param num
 	 * @return　計算結果
 	 */
-	protected abstract Fraction sub(int num);
+	public abstract Fraction sub(int num);
 
 	/**
 	 * 分数同士の掛け算
 	 * @param f かける数
 	 * @return　乗算結果
 	 */
-	protected abstract Fraction multi(Fraction f);
+	public abstract Fraction multi(Fraction f);
 
 	/**
 	 * 分数と整数の掛け算
 	 * @param num 整数
 	 * @return　乗算結果
 	 */
-	protected abstract Fraction multi(int num);
+	public abstract Fraction multi(int num);
 
 	/**
 	 * 分数同士の割り算
 	 * @param f　割る数
 	 * @return　剰余結果
 	 */
-	protected abstract Fraction div(Fraction f);
+	public abstract Fraction div(Fraction f);
 
 	/**
 	 * 分数と整数の割り算
 	 * @param num　割る数
 	 * @return　剰余結果
 	 */
-	protected abstract Fraction div(int num);
+	public abstract Fraction div(int num);
 
 	/**
 	 * 分数を約分する関数
 	 * @return 約分された分数
 	 */
-	protected abstract Fraction reduce();
+	public abstract Fraction reduce();
 
 	/**
 	 * 分数を浮動小数点に変換
 	 * @return
 	 */
-	protected abstract double convertFloat();
+	public abstract double convertFloat();
 
 	/**
 	 * 整数に変換、できなければ例外処理
 	 * @return　整数
 	 */
-	protected abstract int convertInt();
+	public abstract int convertInt();
 
 	@Override
 	public abstract String toString();

@@ -7,16 +7,16 @@ package model;
  */
 public class ImproperFraction extends Fraction {
 
-	protected ImproperFraction(int num) {
+	public ImproperFraction(int num) {
 		super(num);
 	}
 
-	protected ImproperFraction(int mol, int den) {
+	public ImproperFraction(int mol, int den) {
 		super(mol, den);
 	}
 
 	@Override
-	protected Fraction add(Fraction f) {
+	public Fraction add(Fraction f) {
 		//　通分処理
 		int mol1 = this.mol * f.den;
 		int den1 = this.den * f.den;
@@ -33,7 +33,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction add(int num) {
+	public Fraction add(int num) {
 		//　受け取った整数（int)をFraction型へ
 		Fraction f = new ImproperFraction(num);
 
@@ -43,7 +43,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction sub(Fraction f) {
+	public Fraction sub(Fraction f) {
 		Fraction min = f.multi(-1);
 		Fraction re = this.add(min);
 
@@ -51,7 +51,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction sub(int num) {
+	public Fraction sub(int num) {
 		Fraction f = new ImproperFraction(num);
 		Fraction re = this.sub(f);
 
@@ -59,7 +59,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction multi(Fraction f) {
+	public Fraction multi(Fraction f) {
 		int mol = this.mol * f.mol;
 		int den = this.den * f.den;
 
@@ -69,7 +69,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction multi(int num) {
+	public Fraction multi(int num) {
 		Fraction f = new ImproperFraction(num);
 
 		Fraction re = this.multi(f);
@@ -78,7 +78,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction div(Fraction f) {
+	public Fraction div(Fraction f) {
 		Fraction inv = new ImproperFraction(f.den, f.mol);
 
 		Fraction re = this.multi(inv);
@@ -87,7 +87,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction div(int num) {
+	public Fraction div(int num) {
 		if (num == 0) {
 			throw new ArithmeticException();
 		}
@@ -99,7 +99,7 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected Fraction reduce() {
+	public Fraction reduce() {
 		int g = gcd(this.den, this.mol);
 		int d = this.den / g;
 		int m = this.mol / g;
@@ -109,13 +109,13 @@ public class ImproperFraction extends Fraction {
 	}
 
 	@Override
-	protected double convertFloat() {
+	public double convertFloat() {
 		double f = (double) this.mol / this.den;
 		return f;
 	}
 
 	@Override
-	protected int convertInt() {
+	public int convertInt() {
 		if (this.mol % this.den == 0) {
 			int num = this.mol / this.den;
 			return num;

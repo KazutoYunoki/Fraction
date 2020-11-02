@@ -1,8 +1,10 @@
-package model;
+package test;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import model.Fraction2;
 
 public class Fraction2Test {
 
