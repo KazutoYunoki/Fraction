@@ -3,7 +3,7 @@
  * @author kazut
  *
  */
-public class Fraction2 implements Comparable<Fraction2>, Calculate {
+public class Fraction2 implements Comparable<Fraction2> {
 	/**　分子*/
 	final protected int mol;
 	/**　分母*/
@@ -42,7 +42,6 @@ public class Fraction2 implements Comparable<Fraction2>, Calculate {
 	 * @param f　加数
 	 * @return　加算結果
 	 */
-	@Override
 	public Fraction2 add(Fraction2 f) {
 
 		//　通分処理
