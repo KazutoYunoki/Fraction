@@ -7,21 +7,31 @@ package model;
  */
 public class ImproperFraction extends Fraction {
 
+	/**construct
+	 * @param num Integer
+	 */
 	public ImproperFraction(int num) {
-		super(num);
+		super(0, num, 1);
 	}
 
 	public ImproperFraction(int mol, int den) {
 		super(mol, den);
 	}
 
+	public ImproperFraction() {
+		super();
+	}
+
 	@Override
 	public Fraction add(Fraction f) {
-		//　通分処理
-		int mol1 = this.mol * f.den;
-		int den1 = this.den * f.den;
+		//　帯分数かどうかチェックする関数
+		Fraction impf = checkInstanceMixedFraction(f);
 
-		int mol2 = f.mol * this.den;
+		//　通分処理
+		int mol1 = this.mol * impf.den;
+		int den1 = this.den * impf.den;
+
+		int mol2 = impf.mol * this.den;
 
 		//　分子同士を加算
 		int mol = mol1 + mol2;
@@ -44,7 +54,9 @@ public class ImproperFraction extends Fraction {
 
 	@Override
 	public Fraction sub(Fraction f) {
-		Fraction min = f.multi(-1);
+		//　帯分数かどうかチェックする関数
+		Fraction impf = checkInstanceMixedFraction(f);
+		Fraction min = impf.multi(-1);
 		Fraction re = this.add(min);
 
 		return re.reduce();
@@ -60,8 +72,10 @@ public class ImproperFraction extends Fraction {
 
 	@Override
 	public Fraction multi(Fraction f) {
-		int mol = this.mol * f.mol;
-		int den = this.den * f.den;
+		//　帯分数かどうかチェックする関数
+		Fraction impf = checkInstanceMixedFraction(f);
+		int mol = this.mol * impf.mol;
+		int den = this.den * impf.den;
 
 		Fraction re = new ImproperFraction(mol, den);
 
@@ -79,7 +93,9 @@ public class ImproperFraction extends Fraction {
 
 	@Override
 	public Fraction div(Fraction f) {
-		Fraction inv = new ImproperFraction(f.den, f.mol);
+		//　帯分数かどうかチェックする関数
+		Fraction impf = checkInstanceMixedFraction(f);
+		Fraction inv = new ImproperFraction(impf.den, impf.mol);
 
 		Fraction re = this.multi(inv);
 

@@ -6,6 +6,10 @@ package model;
  *
  */
 public abstract class Fraction implements Comparable<Fraction> {
+
+	/**　整数**/
+	final protected int num;
+
 	/**　分子*/
 	final protected int mol;
 
@@ -17,7 +21,7 @@ public abstract class Fraction implements Comparable<Fraction> {
 	 * @param num 整数
 	 */
 	protected Fraction(int num) {
-		this(num, 1);
+		this(num, 0, 1);
 	}
 
 	/**
@@ -26,6 +30,12 @@ public abstract class Fraction implements Comparable<Fraction> {
 	 * @param den
 	 */
 	protected Fraction(int mol, int den) {
+		this(0, mol, den);
+	}
+
+	protected Fraction(int num, int mol, int den) {
+		//　整数を保存
+		this.num = num;
 		//　もし分母にゼロがある場合（例外を投げる）
 		if (den == 0) {
 			throw new ArithmeticException();
@@ -38,6 +48,12 @@ public abstract class Fraction implements Comparable<Fraction> {
 			this.mol = mol;
 			this.den = den;
 		}
+	}
+
+	public Fraction() {
+		this.num = 0;
+		this.mol = 0;
+		this.den = 0;
 	}
 
 	/**
@@ -139,6 +155,42 @@ public abstract class Fraction implements Comparable<Fraction> {
 	 * @return　整数
 	 */
 	public abstract int convertInt();
+
+	/**
+	 * 仮分数をに帯分数に変換する関数
+	 * @return
+	 */
+	protected Fraction cvMixedFraction(Fraction f) {
+		int newNum = f.num + f.mol / f.den;
+		int newMol = f.mol - newNum * f.den;
+		Fraction mixedFraction = new MixedFraction(newNum, newMol, f.den);
+		return mixedFraction;
+	}
+
+	/**
+	 * convert MixedFraction to ImproperFraction
+	 * @param f MixedFraction
+	 * @return ImproperFraction
+	 */
+	protected Fraction cvImproperFraction(Fraction f) {
+		int newMol = f.mol + f.num * f.den;
+		Fraction impf = new ImproperFraction(newMol, f.den);
+		return impf;
+	}
+
+	/**
+	 * Fractionが帯分数かチェックして仮分数で返す関数
+	 * @param f Fraction
+	 * @return ImproperFraction
+	 */
+	protected Fraction checkInstanceMixedFraction(Fraction f) {
+		if (f instanceof MixedFraction) {
+			Fraction impf = cvImproperFraction(f);
+			return impf;
+		} else {
+			return f;
+		}
+	}
 
 	@Override
 	public abstract String toString();
